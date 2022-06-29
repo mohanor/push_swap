@@ -14,6 +14,8 @@ int has_alpha(char *str)
     
     if (str[i] == '-' || str[i] == '+')
         i++;
+    if(str[i] == '\0')
+        return (1);
     while (str[i])
     {
         if (!(str[i]>= '0' && str[i] <= '9'))
@@ -53,7 +55,8 @@ int main(int ac, char **av)
     t_stack *tmp_1;
     t_stack *tmp_2;
     int     i;
-    //long long    nb;
+
+    // long long    nb;
 
     i = 1;
     if (ac < 2)
@@ -68,8 +71,6 @@ int main(int ac, char **av)
         i++;
     }
 
-    // ft_putstr("ok");
-
     tmp = new_item((int)ft_atoi(av[1]));
 
     i = 2;
@@ -77,6 +78,19 @@ int main(int ac, char **av)
     {
         add_back(&tmp, new_item((int)ft_atoi(av[i])));
         i++;
+    }
+
+    tmp_1 = tmp;
+    while (tmp_1)
+    {
+        tmp_2 = tmp_1->next;
+        while (tmp_2)
+        {
+            if (tmp_1->value == tmp_2->value)
+                my_exit ("error\n");
+            tmp_2 = tmp_2->next;
+        }
+        tmp_1 = tmp_1->next;
     }
 
     int index;
@@ -97,10 +111,6 @@ int main(int ac, char **av)
         printf("%d ", index);
         tmp_1 = tmp_1->next;
     }
-
-    
-
-
 
     return (0);
 }
