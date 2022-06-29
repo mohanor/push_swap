@@ -49,14 +49,16 @@ int     not_long(char *str)
 
 int main(int ac, char **av)
 {
-    //t_stack *tmp;
+    t_stack *tmp;
+    t_stack *tmp_1;
+    t_stack *tmp_2;
     int     i;
     //long long    nb;
-    
+
     i = 1;
     if (ac < 2)
         return 0;
-    
+
     while (av[i])
     {
         if (has_alpha(av[i]))
@@ -66,23 +68,39 @@ int main(int ac, char **av)
         i++;
     }
 
-    ft_putstr("ok\n");
+    // ft_putstr("ok");
 
-   /*
     tmp = new_item((int)ft_atoi(av[1]));
+
     i = 2;
     while (av[i])
     {
-        add_back(&tmp, (int)ft_atoi(av[1]));
+        add_back(&tmp, new_item((int)ft_atoi(av[i])));
         i++;
     }
-    nb = ft_atoi(av[i]);
-        printf("%lld\n", nb);
 
-    //if (nb >= nb_min && nb <= nb_max)
-    //{
-        
-    //}
-    */
+    int index;
+    int elm;
+    tmp_1 = tmp;
+    while (tmp_1)
+    {
+        elm = tmp_1->value;
+        tmp_2 = tmp;
+        index = ac - 2;
+        while (tmp_2)
+        {
+            if (elm < tmp_2->value)
+                index--;
+            
+            tmp_2 = tmp_2->next;
+        }
+        printf("%d ", index);
+        tmp_1 = tmp_1->next;
+    }
+
+    
+
+
+
     return (0);
 }
