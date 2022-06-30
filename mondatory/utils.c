@@ -64,3 +64,50 @@ long long	ft_atoi(char *str)
 	}
 	return (r * k);
 }
+
+int     not_long(char *str)
+{
+    long long nb;
+    long long    nb_max;
+    long long    nb_min;
+
+    nb_max = INT32_MAX;
+    nb_min = INT32_MIN;
+    nb = ft_atoi(str);
+
+    if (ft_nbrlen(nb) == ft_strlen(str))
+    {
+        if (nb >= nb_min && nb <= nb_max)
+            return (1);
+    }
+    return (0);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char	*p;
+	int		i;
+	int		j;
+
+	j = 0;
+	i = -1;
+	if (!s1)
+	{
+		s1 = (char *)malloc(sizeof(char));
+		if (!s1)
+			return (NULL);
+		s1[0] = ' ';
+	}
+	if (!s2)
+		return (NULL);
+	p = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!p)
+		return (NULL);
+	while (s1[++i])
+		p[i] = s1[i];
+	while (s2[j])
+		p[i++] = s2[j++];
+	p[i] = '\0';
+	free(s1);
+	return (p);
+}

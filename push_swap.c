@@ -18,7 +18,7 @@ int has_alpha(char *str)
         return (1);
     while (str[i])
     {
-        if (!(str[i]>= '0' && str[i] <= '9'))
+        if (str[i] < '0' || str[i] > '9')
             return (1);
         i++;
     }
@@ -31,86 +31,89 @@ void my_exit(char *str)
     exit(0);
 }
 
-int     not_long(char *str)
+void    print_tab(int *tab, int len)
 {
-    long long nb;
-    long long    nb_max;
-    long long    nb_min;
+    int i;
 
-    nb_max = INT32_MAX;
-    nb_min = INT32_MIN;
-    nb = ft_atoi(str);
-    
-    if (ft_nbrlen(nb) == ft_strlen(str))
+    i = 0;
+    while (i < len)
     {
-        if (nb >= nb_min && nb <= nb_max)
-            return (1);
+        if (i == len - 1)
+        {
+            printf("%d", tab[i]);
+            return ;
+        }
+        printf("%d ", tab[i]);
+        i++;
     }
-    return (0);
 }
 
 int main(int ac, char **av)
 {
-    t_stack *tmp;
-    t_stack *tmp_1;
-    t_stack *tmp_2;
-    int     i;
-
-    // long long    nb;
+    int i;
+    char *ptr;
+    char **tab;
+    int *tmp;
 
     i = 1;
     if (ac < 2)
+        my_exit("error1\n");
+
+    while (av[i])
+    {
+        if(has_alpha(av[i]))
+        {
+            my_exit("error\n");
+        }
+        i++;
+    }
+
+    i = 1;
+    ptr = NULL;
+    while (av[i])
+    {
+        ptr = ft_strjoin(ptr, av[i]);
+        ptr = ft_strjoin(ptr, " ");
+        i++;
+    }
+
+    tab = ft_split(ptr, ' ');
+
+    tmp = (int *)malloc((ac - 1) * sizeof(int));
+    if (!tmp)
         return 0;
 
-    while (av[i])
+    i = 0;
+    while (tab[i])
     {
-        if (has_alpha(av[i]))
-            my_exit ("error\n");
-        if (!not_long(av[i]))
-            my_exit ("error\n");
+        if(!not_long(tab[i]))
+        {
+            free(tab);
+            my_exit("error\n");
+        }
+
+        tmp[i] = (int)ft_atoi(tab[i]);
         i++;
     }
 
-    tmp = new_item((int)ft_atoi(av[1]));
+    i = 0;
+    int j;
 
-    i = 2;
-    while (av[i])
+    while (i < ac - 2)
     {
-        add_back(&tmp, new_item((int)ft_atoi(av[i])));
+        j = i + 1;
+        while(j < ac - 1)
+        {
+            if (tmp[i] == tmp[j])
+                my_exit("error\n");
+            j++;
+        }
         i++;
     }
 
-    tmp_1 = tmp;
-    while (tmp_1)
-    {
-        tmp_2 = tmp_1->next;
-        while (tmp_2)
-        {
-            if (tmp_1->value == tmp_2->value)
-                my_exit ("error\n");
-            tmp_2 = tmp_2->next;
-        }
-        tmp_1 = tmp_1->next;
-    }
+    print_tab(tmp, ac - 1);
 
-    int index;
-    int elm;
-    tmp_1 = tmp;
-    while (tmp_1)
-    {
-        elm = tmp_1->value;
-        tmp_2 = tmp;
-        index = ac - 2;
-        while (tmp_2)
-        {
-            if (elm < tmp_2->value)
-                index--;
-            
-            tmp_2 = tmp_2->next;
-        }
-        printf("%d ", index);
-        tmp_1 = tmp_1->next;
-    }
+    
 
     return (0);
 }
