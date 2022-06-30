@@ -2,7 +2,7 @@ NAME = push_swap
 
 NAME_B = checker
 
-src = mondatory/utils.c mondatory/split.c mondatory/lst.c push_swap.c
+src = mondatory/sort.c mondatory/utils.c mondatory/split.c mondatory/lst.c push_swap.c
 
 obj = $(src:.c=.o)
 

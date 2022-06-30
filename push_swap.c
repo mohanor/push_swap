@@ -38,14 +38,15 @@ void    print_tab(int *tab, int len)
     i = 0;
     while (i < len)
     {
-        if (i == len - 1)
+        /*if (i == len - 1)
         {
             printf("%d", tab[i]);
             return ;
-        }
-        printf("%d ", tab[i]);
+        }*/
+        printf("%d\n", tab[i]);
         i++;
     }
+    ft_putstr("\n");
 }
 
 int *tab_index(int *tab, int len)
@@ -139,10 +140,9 @@ int main(int ac, char **av)
         }
         i++;
     }
-
-    print_tab(tmp, ac - 1);
     index = tab_index(tmp, ac -1);
-    printf("\n");
+    print_tab(index, ac - 1);
+    ra(index, ac - 2);
     print_tab(index, ac - 1);
 
     return (0);

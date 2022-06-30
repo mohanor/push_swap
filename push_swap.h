@@ -20,5 +20,7 @@ int	ft_nbrlen(long long nb);
 char	*ft_strjoin(char *s1, char *s2);
 char	**ft_split(char *s, char c);
 int     not_long(char *str);
+void    sa(int *tab, int len);
+void    ra(int *a, int top_a);
 
 #endif
