@@ -74,3 +74,38 @@ void    rr(int *a, int *b, int top_a, int top_b)
     rb(b, top_b);
 }
 
+void    rra(int *a, int top_a)
+{
+    int i;
+    int p;
+
+    p = a[0];
+    i = 0;
+    while (i < top_a - 1)
+    {
+        a[i] = a[i + 1]; 
+        i++;
+    }
+    a[top_a] = p;
+}
+
+void    rrb(int *b, int top_b)
+{
+    int i;
+    int p;
+
+    p = b[0];
+    i = 0;
+    while (i < top_b - 1)
+    {
+        b[i] = b[i + 1]; 
+        i++;
+    }
+    b[top_b] = p;
+}
+
+void    rrr(int *a, int *b, int top_a, int top_b)
+{
+    rra(a, top_a);
+    rrb(b, top_b);
+}

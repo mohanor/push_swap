@@ -21,6 +21,15 @@ char	*ft_strjoin(char *s1, char *s2);
 char	**ft_split(char *s, char c);
 int     not_long(char *str);
 void    sa(int *tab, int len);
+void    sb(int *b, int len);
+void    ss(int *a, int *b, int top_a, int top_b);
+void    pa(int *a, int *b, int *top_a, int *top_b);
+void    pb(int *a, int *b, int *top_a, int *top_b);
 void    ra(int *a, int top_a);
+void    rb(int *b, int top_b);
+void    rr(int *a, int *b, int top_a, int top_b);
+void    rra(int *a, int top_a);
+void    rrb(int *b, int top_b);
+void    rrr(int *a, int *b, int top_a, int top_b);
 
 #endif

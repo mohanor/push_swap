@@ -43,8 +43,8 @@ void    print_tab(int *tab, int len)
             printf("%d", tab[i]);
             return ;
         }*/
-        printf("%d\n", tab[i]);
-        i++;
+        printf("%d\n", tab[len - 1]);
+        len--;
     }
     ft_putstr("\n");
 }
@@ -83,7 +83,8 @@ int main(int ac, char **av)
     char *ptr;
     char **tab;
     int *tmp;
-    int *index;
+    int *a;
+    int *b;
 
     i = 1;
     if (ac < 2)
@@ -140,10 +141,33 @@ int main(int ac, char **av)
         }
         i++;
     }
-    index = tab_index(tmp, ac -1);
-    print_tab(index, ac - 1);
-    ra(index, ac - 2);
-    print_tab(index, ac - 1);
 
+    // int top_p = 0;
+    a = tab_index(tmp, ac -1);
+    b = (int *)malloc(sizeof(int) * ac - 1);
+    if (!b) return 0;
+    i = 0;
+    while(i < ac - 1)
+        b[i++] = -1;
+    if (!b)
+        my_exit("error\n");
+    // print_tab(b, ac - 1);
+
+    int ta = ac - 2;
+    int tb = -1;
+    pb(a, b, &ta, &tb);
+    printf("\n");
+   
+
+    pb(a, b, &ta, &tb);
+    printf("\n");
+    
+
+    pb(a, b, &ta, &tb);
+    printf("\n");
+
+    print_tab(a, ta + 1);
+    printf("\n");
+    print_tab(b, tb + 1);
     return (0);
 }
