@@ -48,12 +48,41 @@ void    print_tab(int *tab, int len)
     }
 }
 
+int *tab_index(int *tab, int len)
+{
+    int *arr;
+    int i;
+    int j;
+    int index;
+
+    arr = (int *)malloc(sizeof(int) * len);
+    if (!arr)
+        return 0;
+    i = 0;
+    while (i < len)
+    {
+        j = 0;
+        index = 0;
+        while (j < len)
+        {
+            if (tab[i] > tab[j])
+                index++;
+            j++;
+        }
+
+        arr[i] = index;
+        i++;
+    }
+    free(tab);
+    return arr;
+}
 int main(int ac, char **av)
 {
     int i;
     char *ptr;
     char **tab;
     int *tmp;
+    int *index;
 
     i = 1;
     if (ac < 2)
@@ -112,8 +141,9 @@ int main(int ac, char **av)
     }
 
     print_tab(tmp, ac - 1);
-
-    
+    index = tab_index(tmp, ac -1);
+    printf("\n");
+    print_tab(index, ac - 1);
 
     return (0);
 }
