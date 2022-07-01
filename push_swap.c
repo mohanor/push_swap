@@ -46,7 +46,7 @@ void    print_tab(int *tab, int len)
         printf("%d\n", tab[len - 1]);
         len--;
     }
-    ft_putstr("\n");
+    //ft_putstr("\n");
 }
 
 int *tab_index(int *tab, int len)
@@ -85,6 +85,8 @@ int main(int ac, char **av)
     int *tmp;
     int *a;
     int *b;
+    
+    t_node *node;
 
     i = 1;
     if (ac < 2)
@@ -143,31 +145,34 @@ int main(int ac, char **av)
     }
 
     // int top_p = 0;
-    a = tab_index(tmp, ac -1);
-    b = (int *)malloc(sizeof(int) * ac - 1);
-    if (!b) return 0;
+    node->a = tab_index(tmp, ac -1);
+    node->b = (int *)malloc(sizeof(int) * ac - 1);
+    if (!node->b)
+        return 0;
+
     i = 0;
     while(i < ac - 1)
-        b[i++] = -1;
-    if (!b)
-        my_exit("error\n");
+        node->b[i++] = -1;
+
     // print_tab(b, ac - 1);
 
+    node->top_a = ac - 2;
+    node->top_b = -1;
     int ta = ac - 2;
     int tb = -1;
+
+    // print_tab(a, ta + 1);
+    printf("\n");
     pb(a, b, &ta, &tb);
     printf("\n");
-   
 
     pb(a, b, &ta, &tb);
     printf("\n");
+
+    pb(a, b, &ta, &tb);
+    printf("\n");
+
+
     
-
-    pb(a, b, &ta, &tb);
-    printf("\n");
-
-    print_tab(a, ta + 1);
-    printf("\n");
-    print_tab(b, tb + 1);
     return (0);
 }

@@ -20,8 +20,8 @@ void    sb(int *b, int len)
 
 void    ss(int *a, int *b, int top_a, int top_b)
 {
-    sa(a, top_a);
-    sb(b, top_b);
+    sa(a, top_a + 1);
+    sb(b, top_b + 1);
 }
 
 void pa(int *a, int *b, int *top_a, int *top_b)
@@ -81,7 +81,7 @@ void    rra(int *a, int top_a)
 
     p = a[0];
     i = 0;
-    while (i < top_a - 1)
+    while (i <= top_a - 1)
     {
         a[i] = a[i + 1]; 
         i++;
@@ -96,7 +96,7 @@ void    rrb(int *b, int top_b)
 
     p = b[0];
     i = 0;
-    while (i < top_b - 1)
+    while (i <= top_b - 1)
     {
         b[i] = b[i + 1]; 
         i++;
@@ -109,3 +109,5 @@ void    rrr(int *a, int *b, int top_a, int top_b)
     rra(a, top_a);
     rrb(b, top_b);
 }
+
+// 2 3 4 5 6 1
