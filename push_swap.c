@@ -36,14 +36,14 @@ void    print_tab(int *tab, int len)
     int i;
 
     i = 0;
-    while (i < len)
+    while (i <= len)
     {
         /*if (i == len - 1)
         {
             printf("%d", tab[i]);
             return ;
         }*/
-        printf("%d\n", tab[len - 1]);
+        printf("%d\n", tab[len]);
         len--;
     }
     //ft_putstr("\n");
@@ -74,20 +74,21 @@ int *tab_index(int *tab, int len)
         arr[i] = index;
         i++;
     }
-    free(tab);
+    //free(tab);
     return arr;
 }
+
 int main(int ac, char **av)
 {
     int i;
     char *ptr;
     char **tab;
     int *tmp;
-    int *a;
-    int *b;
-    
     t_node *node;
 
+    node = (t_node *)malloc(sizeof(t_node));
+    if (!node)
+        return 0;
     i = 1;
     if (ac < 2)
         my_exit("error1\n");
@@ -122,6 +123,7 @@ int main(int ac, char **av)
         if(!not_long(tab[i]))
         {
             free(tab);
+            free(tmp);
             my_exit("error\n");
         }
 
@@ -143,36 +145,49 @@ int main(int ac, char **av)
         }
         i++;
     }
-
+    
     // int top_p = 0;
     node->a = tab_index(tmp, ac -1);
+    int h = 0;
+    int h2 = ac - 2;
+    int kk;
+    while (h <= h2)
+    {
+        kk = node->a[h];
+        node->a[h] = node->a[h2];
+        node->a[h2] = kk;
+        h++;
+        h2--;
+    }
     node->b = (int *)malloc(sizeof(int) * ac - 1);
     if (!node->b)
         return 0;
-
+    
+    
     i = 0;
     while(i < ac - 1)
         node->b[i++] = -1;
-
-    // print_tab(b, ac - 1);
-
-    node->top_a = ac - 2;
-    node->top_b = -1;
-    int ta = ac - 2;
-    int tb = -1;
-
-    // print_tab(a, ta + 1);
-    printf("\n");
-    pb(a, b, &ta, &tb);
-    printf("\n");
-
-    pb(a, b, &ta, &tb);
-    printf("\n");
-
-    pb(a, b, &ta, &tb);
-    printf("\n");
-
-
     
+    int la = ac - 2;
+    int lb = -1;
+    node->top_a = &la;
+    node->top_b = &lb;
+    // ft_putstr("p\n");
+    //print_tab(node->a, *node->top_a);
+
+    push_sorted_to_b(node);
+    //print_tab(node->b, *node->top_b);
+    //ft_putstr("\n");
+    push_sorted_to_a(node);
+    // print_tab(node->a, *node->top_a);
+
+/*
+    int y = *node->top_a;
+     while (0 <= y)
+     {
+        printf("%d\n", tmp[node->a[y]]);
+        y--;
+     }*/
+    //print_tab(node->a, *node->top_a);
     return (0);
 }
