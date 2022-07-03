@@ -146,7 +146,6 @@ int main(int ac, char **av)
         i++;
     }
     
-    // int top_p = 0;
     node->a = tab_index(tmp, ac -1);
     int h = 0;
     int h2 = ac - 2;
@@ -175,6 +174,74 @@ int main(int ac, char **av)
     // ft_putstr("p\n");
     //print_tab(node->a, *node->top_a);
 
+    if (ac == 4)
+    {
+        /*
+        if (node->a[2] > node->a[1] && node->a[2] > node->a[0] && node->a[1] < node->a[0])
+        {
+            ra(node->a, *node->top_a, '1');
+            return 0;
+        }
+        if (node->a[2] < node->a[1] && node->a[1] > node->a[0] && node->a[2] < node->a[0])
+        {
+            rra(node->a, *node->top_a);
+            return 0;
+        }
+
+        if (node->a[2] < node->a[1] && node->a[1] > node->a[0] && node->a[2] > node->a[0])
+        {
+            rra(node->a, *node->top_a);
+            return 0;
+        }
+
+        if (node->a[2] > node->a[1] && node->a[2] < node->a[0])
+        {
+            
+return 0;
+        }
+        
+
+        */
+
+       if (node->a[2] > node->a[1])
+       {
+           if(node->a[0] > node->a[2])
+           {
+               sa(node->a, *node->top_a, '1');
+               return 0;
+           }
+
+           if (node->a[0] < node->a[1])
+           {
+                sa(node->a, *node->top_a, '1');
+                rra(node->a, *node->top_a);
+                return 0;
+           }
+
+           if (node->a[0] < node->a[2] && node->a[0] > node->a[1])
+           {
+                ra(node->a, *node->top_a, '1');
+                return 0;
+           }
+       }
+
+       if (node->a[2] < node->a[1])
+       {
+           if(node->a[1] > node->a[0] && node->a[0] > node->a[2])
+           {
+                sa(node->a, *node->top_a, '1');
+                ra(node->a, *node->top_a, '1');
+                return 0;
+           }
+
+           if(node->a[1] > node->a[0] && node->a[0] < node->a[2])
+           {
+                rra(node->a, *node->top_a);
+                return 0;
+           }
+       }
+       return 0;
+    }
     push_sorted_to_b(node);
     //print_tab(node->b, *node->top_b);
     //ft_putstr("\n");
