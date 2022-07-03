@@ -78,6 +78,54 @@ int *tab_index(int *tab, int len)
     return arr;
 }
 
+void    random_3nbr(t_node *vars)
+{
+        if (vars->a[2] > vars->a[1])
+       {
+           if(vars->a[0] > vars->a[2])
+               sa(vars->a, *vars->top_a, '1');
+           if (vars->a[0] < vars->a[1])
+           {
+                sa(vars->a, *vars->top_a, '1');
+                rra(vars->a, *vars->top_a);
+           }
+           if (vars->a[0] < vars->a[2] && vars->a[0] > vars->a[1])
+                ra(vars->a, *vars->top_a, '1');
+       }
+       if (vars->a[2] < vars->a[1])
+       {
+           if(vars->a[1] > vars->a[0] && vars->a[0] > vars->a[2])
+           {
+                sa(vars->a, *vars->top_a, '1');
+                ra(vars->a, *vars->top_a, '1');
+           }
+           if(vars->a[1] > vars->a[0] && vars->a[0] < vars->a[2])
+                rra(vars->a, *vars->top_a);
+       }
+}
+
+int find_min(int *a, int tb)
+{
+    int i;
+    int min;
+    int j;
+
+    i = 0;
+    min = a[0];
+    j = 0;
+    while (i <= tb)
+    {
+        if (min < a[i])
+        {
+            min = a[i];
+            j = i;
+        }
+        i++;
+    }
+
+    return j;
+}
+
 int main(int ac, char **av)
 {
     int i;
@@ -176,71 +224,60 @@ int main(int ac, char **av)
 
     if (ac == 4)
     {
-        /*
-        if (node->a[2] > node->a[1] && node->a[2] > node->a[0] && node->a[1] < node->a[0])
+        random_3nbr(node);
+        return 0;
+    }
+
+    int i_min;
+    if (ac == 6)
+    {
+        i_min = find_min(node->a, *node->top_a);
+        if (i_min >= 2)
+        {
+            while (i_min < *node->top_a)
+            {
+                ra(node->a, *node->top_a, '1');
+                i_min++;
+            }
+        }else{
+                rra(node->a, *node->top_a);
+                rra(node->a, *node->top_a);
+        }
+        pb(node->a, node->b, node->top_a, node->top_b);
+        i_min = find_min(node->a, *node->top_a);
+        if (i_min == 2)
         {
             ra(node->a, *node->top_a, '1');
-            return 0;
-        }
-        if (node->a[2] < node->a[1] && node->a[1] > node->a[0] && node->a[2] < node->a[0])
-        {
-            rra(node->a, *node->top_a);
-            return 0;
-        }
-
-        if (node->a[2] < node->a[1] && node->a[1] > node->a[0] && node->a[2] > node->a[0])
-        {
-            rra(node->a, *node->top_a);
-            return 0;
-        }
-
-        if (node->a[2] > node->a[1] && node->a[2] < node->a[0])
-        {
-            
-return 0;
-        }
-        
-
-        */
-
-       if (node->a[2] > node->a[1])
-       {
-           if(node->a[0] > node->a[2])
-           {
-               sa(node->a, *node->top_a, '1');
-               return 0;
-           }
-
-           if (node->a[0] < node->a[1])
-           {
-                sa(node->a, *node->top_a, '1');
-                rra(node->a, *node->top_a);
-                return 0;
-           }
-
-           if (node->a[0] < node->a[2] && node->a[0] > node->a[1])
-           {
+        }else{
+            if (i_min == 1)
+            {
                 ra(node->a, *node->top_a, '1');
-                return 0;
-           }
-       }
-
-       if (node->a[2] < node->a[1])
-       {
-           if(node->a[1] > node->a[0] && node->a[0] > node->a[2])
-           {
-                sa(node->a, *node->top_a, '1');
                 ra(node->a, *node->top_a, '1');
-                return 0;
-           }
-
-           if(node->a[1] > node->a[0] && node->a[0] < node->a[2])
-           {
+            }
+            if (i_min == 0)
+            {
                 rra(node->a, *node->top_a);
-                return 0;
-           }
-       }
-       return 0;
+            }
+
+        }
+        pb(node->a, node->b, node->top_a, node->top_b);
+        random_3nbr(node);
+
+        if (node->b[1] > node->b[0])
+            sb(node->b, *node->top_b + 1, '1');
+
+        pa(node->a, node->b, node->top_a, node->top_b);
+        if (node->a[*node->top_a - 1] < node->a[*node->top_a])
+        {
+            ra(node->a, *node->top_a, '1');
+        }
+        pa(node->a, node->b, node->top_a, node->top_b);
+        if (node->a[*node->top_a - 1] < node->a[*node->top_a])
+        {
+            ra(node->a, *node->top_a, '1');
+        }
+//print_tab(node->a, *node->top_a);
+        return 0;
     }
     push_sorted_to_b(node);
     //print_tab(node->b, *node->top_b);
