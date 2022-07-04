@@ -5,8 +5,11 @@ NAME_B = checker
 src = mondatory/main_sort.c mondatory/sort.c mondatory/utils.c mondatory/split.c mondatory/sort_small.c push_swap.c\
 		mondatory/sort2.c mondatory/sort3.c mondatory/utils2.c
 
+src_b = bonus/bouns_sort1.c bonus/bouns_sort2.c bonus/bouns_sort3.c bonus/bouns_utils.c bonus/split.c bonus/get_next_line.c
+
 obj = $(src:.c=.o)
 
+obj_b = $(src_b:.c=.o)
 
 flags = -Wall -Wextra -Werror
 
@@ -14,6 +17,11 @@ all: $(NAME)
 
 $(NAME): $(src) $(obj) push_swap.h
 	@gcc $(flags) $(src) -o $(NAME)
+
+bonus: $(NAME_B)
+
+$(NAME_B): $(src_b) $(obj_b) bonus/push_swap_bonus.h
+	@gcc $(flags) $(src_b) -o $(NAME_B)
 
 %.o: %.c
 	@gcc -c $< -o $@
