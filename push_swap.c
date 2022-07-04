@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 21:38:14 by matef             #+#    #+#             */
-/*   Updated: 2022/07/03 22:40:18 by matef            ###   ########.fr       */
+/*   Updated: 2022/07/04 17:00:32 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,57 +88,6 @@ void	if_has_deplcate(int *tmp, int ac)
 	}
 }
 
-void	inverse_tab(t_node *node, int ac)
-{
-	int	i;
-	int	j;
-	int	tmp;
-
-	i = 0;
-	j = ac - 2;
-	while (i <= j)
-	{
-		tmp = node->a[i];
-		node->a[i] = node->a[j];
-		node->a[j] = tmp;
-		i++;
-		j--;
-	}
-}
-
-void	if_av_has_alpha(char **av)
-{
-	int	i;
-
-	i = 1;
-	while (av[i])
-	{
-		if (has_alpha(av[i]))
-			my_exit("error2\n");
-		i++;
-	}
-}
-
-void	put_to_tmp(char **tab, int *tmp)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		if (!not_long(tab[i]))
-		{
-			free(tab);
-			free(tmp);
-			my_exit("error\n");
-		}
-		tmp[i] = (int)ft_atoi(tab[i]);
-		i++;
-	}
-}
-
-
-
 int	main(int ac, char **av)
 {
 	int		i;
@@ -162,14 +111,6 @@ int	main(int ac, char **av)
 		node->b[i++] = -1;
 	node->top_a = &la;
 	node->top_b = &lb;
-	if (ac == 4)
-		random_3nbr(node);
-	else if (ac == 6)
-		random_5nbr(node);
-	else
-	{
-		push_sorted_to_b(node);
-		push_sorted_to_a(node);
-	}
+	sort_stack(node, ac);
 	return (0);
 }

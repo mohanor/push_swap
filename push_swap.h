@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 22:41:21 by matef             #+#    #+#             */
-/*   Updated: 2022/07/03 22:45:34 by matef            ###   ########.fr       */
+/*   Updated: 2022/07/04 16:05:00 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,13 @@ void		random_5nbr(t_node *vars);
 void		random_3nbr(t_node *vars);
 int			find_min(int *a, int tb);
 void		inverse_tab(t_node *node, int ac);
+void		sort_stack(t_node *node, int ac);
+void		parcing(t_node *node, char **av, int ac);
+void		if_av_has_alpha(char **av);
+void		my_exit(char *str);
+int			has_alpha(char *str);
+void		if_has_deplcate(int *tmp, int ac);
+int			*tab_index(int *tab, int len);
+void		put_to_tmp(char **tab, int *tmp);
 
 #endif
