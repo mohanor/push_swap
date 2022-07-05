@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 22:41:21 by matef             #+#    #+#             */
-/*   Updated: 2022/07/04 16:05:00 by matef            ###   ########.fr       */
+/*   Updated: 2022/07/05 19:10:18 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int			has_alpha(char *str);
 void		if_has_deplcate(int *tmp, int ac);
 int			*tab_index(int *tab, int len);
 void		put_to_tmp(char **tab, int *tmp);
+int			check_if_sort(int *tab, int len);
 
 #endif

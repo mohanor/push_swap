@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 21:38:14 by matef             #+#    #+#             */
-/*   Updated: 2022/07/05 16:48:33 by matef            ###   ########.fr       */
+/*   Updated: 2022/07/05 19:10:40 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,20 +86,6 @@ void	if_has_deplcate(int *tmp, int ac)
 		}
 		i++;
 	}
-}
-
-int	check_if_sort(int *tab, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i <= len - 1)
-	{
-		if (tab[i] < tab[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 int	main(int ac, char **av)

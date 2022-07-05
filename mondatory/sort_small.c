@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:27:22 by matef             #+#    #+#             */
-/*   Updated: 2022/07/04 17:40:11 by matef            ###   ########.fr       */
+/*   Updated: 2022/07/05 17:03:56 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,18 @@ void	random_5nbr(t_node *vars)
 	pa(vars->a, vars->b, vars->top_a, vars->top_b);
 	if (vars->a[*vars->top_a - 1] < vars->a[*vars->top_a])
 		ra(vars->a, *vars->top_a, '1');
+}
+
+int	check_if_sort(int *tab, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i <= len - 1)
+	{
+		if (tab[i] < tab[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
 }

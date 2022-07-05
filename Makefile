@@ -17,15 +17,15 @@ flags = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(src) $(obj) push_swap.h
-	cc $(flags) $(src) -o $(NAME)
+$(NAME):  $(obj) push_swap.h
+	cc $(flags) $(obj) -o $(NAME)
 
 bonus: $(NAME_B)
 
-$(NAME_B): $(src_b) $(obj_b) bonus/push_swap_bonus.h
-	cc $(flags) $(src_b) -o $(NAME_B)
+$(NAME_B): $(obj_b) bonus/push_swap_bonus.h
+	cc $(flags) $(obj_b) -o $(NAME_B)
 
-%.o: %.c
+%.o: %.c push_swap.h bonus/push_swap_bonus.h
 	cc -c $< -o $@
 
 clean:
