@@ -18,21 +18,21 @@ flags = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(src) $(obj) push_swap.h
-	@gcc $(flags) $(src) -o $(NAME)
+	cc $(flags) $(src) -o $(NAME)
 
 bonus: $(NAME_B)
 
 $(NAME_B): $(src_b) $(obj_b) bonus/push_swap_bonus.h
-	@gcc $(flags) $(src_b) -o $(NAME_B)
+	cc $(flags) $(src_b) -o $(NAME_B)
 
 %.o: %.c
-	@gcc -c $< -o $@
+	cc -c $< -o $@
 
 clean:
-	@rm -rf $(obj) $(obj_b)
+	rm -rf $(obj) $(obj_b)
 
 fclean: clean
-	@rm -rf $(NAME) $(NAME_B)
+	rm -rf $(NAME) $(NAME_B)
 
 re: fclean all
 	
