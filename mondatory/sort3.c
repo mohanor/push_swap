@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:36:21 by matef             #+#    #+#             */
-/*   Updated: 2022/07/04 16:58:07 by matef            ###   ########.fr       */
+/*   Updated: 2022/07/05 15:18:43 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	if_av_has_alpha(char **av)
 	while (av[i])
 	{
 		if (has_alpha(av[i]))
-			my_exit("error2\n");
+			my_exit("Error\n");
 		i++;
 	}
 }
@@ -61,7 +61,7 @@ void	put_to_tmp(char **tab, int *tmp)
 		{
 			free(tab);
 			free(tmp);
-			my_exit("error\n");
+			my_exit("Error\n");
 		}
 		tmp[i] = (int)ft_atoi(tab[i]);
 		i++;

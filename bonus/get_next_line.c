@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 14:41:36 by matef             #+#    #+#             */
-/*   Updated: 2022/07/04 23:50:22 by matef            ###   ########.fr       */
+/*   Updated: 2022/07/05 15:15:28 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,35 +39,7 @@ char	*get_next_line(int fd)
 	return (str);
 }
 
-void	parcing(t_node *node, char **av, int ac)
-{
-	int		i;
-	char	*ptr;
-	char	**tab;
-	int		*tmp;
-
-	if (ac < 2)
-		my_exit("error1\n");
-	if_av_has_alpha(av);
-	i = 1;
-	ptr = NULL;
-	while (av[i])
-	{
-		ptr = ft_strjoin(ptr, av[i]);
-		ptr = ft_strjoin(ptr, " ");
-		i++;
-	}
-	tab = ft_split(ptr, ' ');
-	tmp = (int *)malloc((ac - 1) * sizeof(int));
-	if (!tmp)
-		exit (1);
-	put_to_tmp(tab, tmp);
-	if_has_deplcate(tmp, ac);
-	node->a = tab_index(tmp, ac -1);
-	inverse_tab(node, ac);
-}
-
-int	check(t_node *vars, char *j)
+void	check(t_node *vars, char *j)
 {
 	if (ft_strcmp(j, "ra") == 0)
 		ra(vars->a, *vars->top_a);
@@ -92,26 +64,8 @@ int	check(t_node *vars, char *j)
 	else if (ft_strcmp(j, "pb") == 0)
 		pb(vars->a, vars->b, vars->top_a, vars->top_b);
 	else
-	{
-		write(1, "ko\n", 3);
-		exit (1);
-	}
+		ko();
 	free(j);
-	return (0);
-}
-
-int	check_if_sort(int *tab, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i <= len - 1)
-	{
-		if (tab[i] < tab[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 void	checker(t_node *vars)
@@ -121,10 +75,18 @@ void	checker(t_node *vars)
 	str = get_next_line(0);
 	while (str[0])
 	{
-		//printf("00 %s\n", str);
 		check(vars, str);
 		str = get_next_line(0);
 	}
+}
+
+void	result(t_node *node)
+{
+	checker(node);
+	if (check_if_sort(node->a, *node->top_a))
+		ft_putstr("OK\n");
+	else
+		ft_putstr("KO\n");
 }
 
 int	main(int ac, char **av)
@@ -150,10 +112,6 @@ int	main(int ac, char **av)
 		node->b[i++] = -1;
 	node->top_a = &la;
 	node->top_b = &lb;
-	checker(node);
-	if (check_if_sort(node->a, *node->top_a))
-		ft_putstr("ok\n");
-	else
-		ft_putstr("ko\n");
+	result(node);
 	return (0);
 }

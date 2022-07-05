@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:42:05 by matef             #+#    #+#             */
-/*   Updated: 2022/07/04 23:40:52 by matef            ###   ########.fr       */
+/*   Updated: 2022/07/05 15:01:37 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ void		rra(int *a, int top_a);
 void		rrb(int *b, int top_b);
 void		rrr(int *a, int *b, int top_a, int top_b);
 int			ft_strcmp(char *s1, char *s2);
+int			check_if_sort(int *tab, int len);
+void		ko(void);
+long long	ft_atoi(char *str);
 
 #endif

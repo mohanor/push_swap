@@ -1,18 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   bouns_utils3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/03 21:38:14 by matef             #+#    #+#             */
-/*   Updated: 2022/07/05 15:19:08 by matef            ###   ########.fr       */
+/*   Created: 2022/07/05 00:32:29 by matef             #+#    #+#             */
+/*   Updated: 2022/07/05 15:18:09 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-int	has_alpha(char *str)
+void	inverse_tab(t_node *node, int ac)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	j = ac - 2;
+	while (i < j)
+	{
+		tmp = node->a[i];
+		node->a[i] = node->a[j];
+		node->a[j] = tmp;
+		i++;
+		j--;
+	}
+}
+
+int	has_alpha_2(char *str)
 {
 	int	i;
 
@@ -35,38 +53,40 @@ int	has_alpha(char *str)
 	return (0);
 }
 
-void	my_exit(char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
-	ft_putstr(str);
-	exit(0);
+	int	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return ((int)s1[i] - (int)s2[i]);
 }
 
-int	*tab_index(int *tab, int len)
+long long	ft_atoi(char *str)
 {
-	int	*arr;
-	int	i;
-	int	j;
-	int	index;
+	int			i;
+	long long	r;
+	long long	k;
 
-	arr = (int *)malloc(sizeof(int) * len);
-	if (!arr)
-		return (0);
 	i = 0;
-	while (i < len)
+	r = 0;
+	k = 1;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		j = 0;
-		index = 0;
-		while (j < len)
-		{
-			if (tab[i] > tab[j])
-				index++;
-			j++;
-		}
-		arr[i] = index;
+		if (str[i] == '-')
+			k *= -1;
 		i++;
 	}
-	free(tab);
-	return (arr);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		r = (r * 10) + ((long long)str[i] - 48);
+		i++;
+	}
+	return (r * k);
 }
 
 void	if_has_deplcate(int *tmp, int ac)
@@ -86,31 +106,4 @@ void	if_has_deplcate(int *tmp, int ac)
 		}
 		i++;
 	}
-}
-
-int	main(int ac, char **av)
-{
-	int		i;
-	t_node	*node;
-	int		la;
-	int		lb;
-
-	la = ac - 2;
-	lb = -1;
-	if (ac == 2)
-		return (0);
-	node = (t_node *)malloc(sizeof(t_node));
-	if (!node)
-		return (0);
-	parcing(node, av, ac);
-	node->b = (int *)malloc(sizeof(int) * ac - 1);
-	if (!node->b)
-		return (0);
-	i = 0;
-	while (i < ac - 1)
-		node->b[i++] = -1;
-	node->top_a = &la;
-	node->top_b = &lb;
-	sort_stack(node, ac);
-	return (0);
 }
